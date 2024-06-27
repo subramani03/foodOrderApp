@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+.header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.nav-list ul
+{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    list-style-type: none;
+}
+
+.nav-list ul li
+{ 
+    font-size: 15px;
+   
+}
+
+.nav-list ul li:hover
+{ 
+   border-bottom: 2px solid orange;
+}
+.res_card
+{
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.37);
+    border: 1px solid white;
+    width: 250px;
+}
+
+.res-img
+{
+    height: 150px;
+    background-position: fit;
+    position: relative;
+
+}
+.res-img span{
+    position: absolute;
+    bottom:10px;
+    left:10px;
+    color: white;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px black;
+ 
+}
+
+.Rimg
+{
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+
+}
+
+.res-name
+{
+    margin: 5px;
+    color: rgb(71, 71, 71);
+    font-size: 18px;
+
+}
+.rating
+{
+    margin-left:5px;
+    display: flex;
+    color: rgb(71, 71, 71);
+    font-size: 18px;   
+    gap:5px;
+
+}
+
+.res-cuisine
+{
+    margin: 5px;
+    color: rgb(83, 83, 83);
+    font-size: 16px;
+    font-weight: 400;
+
+}
+.res-address
+{
+    margin-left: 5px;
+    margin-bottom: 10px;
+    color: rgb(83, 83, 83);
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+.res_card:hover
+{
+    border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+
+}
+.search-input
+{
+    width: 60%;
+    margin: 20px 0px ;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid white ;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;    font-size: 15px;
+    outline: none;
+}
+.search
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.search button
+{
+  background-color: orange;
+  border-radius: 50px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+}
+
+.search .filter-Btn
+{
+    padding:8px;
+    margin-left:10px;
+    border-radius: 20px;
+    border: none;
+    text-wrap: nowrap;
+    background: orange;
+    color: white;
+
+}
+
+.search #search-icon
+{
+    width: 60px;
+    height: 25px;
+    
+
+}
+
+.search #search-icon:hover
+{
+    cursor: pointer;
+
+}
+
+.res-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+}
+
+.Shimmer-container
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.Shimmer-card
+{
+    margin: 20px;
+    border: 1px solid white;
+    width: 250px;
+}
+
+
+.Shimmer-box
+{
+    height: 150px;
+    background-color:#f0f0f0;
+    border-radius: 20px;
+}
+
+.Shimmer-bar
+{
+    height: 20px;
+    margin: 10px 0;
+    margin-left: 10px;
+    width: 200px;
+    background-color:#f0f0f0;
+    border-radius: 10px;   
+}
+.Shimmer-bar2
+{
+    height: 20px;
+    margin: 10px 0;
+    margin-left: 10px;
+    width: 150px;
+    background-color:#f0f0f0;
+    border-radius: 10px;   
+}
+
+.header button
+{
+  background-color: orange;
+  border-radius: 20px;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+}
+
+
+/* Restaurants menu */
+.Res-menu
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    position: relative;
+}
+
+.Res-name
+{
+    font-size: 15px;
+
+}
+
+.Res-Details
+{
+    margin-top: 20px;
+    border: 1px solid #f0f0f0;
+    padding: 20px;
+    width: 70%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.Res-rating
+{
+    display: flex;
+    align-items: center;
+    gap:7px;
+    font-size: 12px;
+}
+.Res-rating h2 span{
+    font-size: 15px;
+    color: gray;
+}
+
+.Res-Details .cuisines
+{
+    margin: 5px 0px;
+    color: orangered;
+    font-size: 14px;
+
+}
+
+.outlet-container
+{
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.line
+{
+    width: 2px;
+    height: 30px;
+    background-color:  #b3b2b2;
+}
+.dot
+{
+    width: 7px;
+    height: 7px;
+    border-radius: 50px;
+    background-color: #b3b2b2;
+}
+
+.outlet-logo
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outlet-text
+{
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.outlet-text .outlet span
+{
+    margin-left: 10px;
+    font-weight: 600;
+    color: #999898;
+}
+
+.Res-Details-line
+{
+    margin-top: 10px;
+    background-color: #f0f0f0;
+}
+.delivary-discount
+{
+    display: flex;
+    margin-top: 10px;
+    gap:10px;
+    font-size: 13px;
+    align-items: center;
+    font-weight: 600;
+    color: #8a8888;
+
+}
