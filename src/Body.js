@@ -16,7 +16,7 @@ const Body = () => {
     );
     let data = await response.json();
     let restro =
-      data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setlistOfRestrarent(restro);
     setFilterRestrarent(restro);
@@ -29,7 +29,7 @@ const Body = () => {
   //  )
   // }
 
-  return listOfRestrarent.length === 0 ? (               //conditional-rendering
+  return listOfRestrarent.length=== 0 ? (               //conditional-rendering
     <Shimmer />
   ) : (
     <div className="body">
