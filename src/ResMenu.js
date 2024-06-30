@@ -1,30 +1,34 @@
-import { MENU_API } from "./utils/constants";
+import {MENU_API,CYCLE_URL} from "./utils/constants";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import useResMenuApi from "./utils/useResMenuApi";
 import RecommendedMenu from "./RecommendedMenu";
 import Shimmer from "./shimmer";
+import useOnlineStatus from "./utils/useOnlineStatus";
+
 
 const ResMenu = () => {
-  let [ResMenuInfo, setResMenuInfo] = useState(null);
   let { resId } = useParams();
-  useEffect(() => {
-    fetchMenu();
-  }, []);
 
-  let fetchMenu = async () => {
-    let response = await fetch(MENU_API + resId);
-    let data = await response.json();
-    setResMenuInfo(data.data);
-    console.log(resId);
-  };
+  let ResMenuInfo=useResMenuApi(MENU_API,resId);
+
+  let OnlineStatus=useOnlineStatus();
+  if(OnlineStatus===false)
+  {
+    return(
+      <div className="noInternet">
+        <h2>No internet connection found !!!</h2>
+        <p>Check your connection or try again later</p>
+
+      </div>
+      
+   )
+  }
+
   if (ResMenuInfo === null) {
     return <Shimmer />;
   }
-
-  let { itemCards } =
-    ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]
-      ?.card?.card;
-  let {
+    let  itemCards  =ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR.cards?.[1]?.card?.card.itemCards
+    let {
     name,
     cuisines,
     costForTwoMessage,
@@ -70,15 +74,16 @@ const ResMenu = () => {
         </div>
         <hr className="Res-Details-line"></hr>
         <div className="delivary-discount">
-          <img
-            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/v1648635511/Delivery_fee_new_cjxumu "
-            width={"22px"}
-            alt="DISTANCE_FEE_NON_FOOD_LM"
-          ></img>
+          <img src={CYCLE_URL} width={"22px"} alt="CYCLE_URL"></img>
           <p>Order above 149 for discounted delivery fee</p>
         </div>
       </div>
-      <RecommendedMenu/>
+      <h1>Recommended</h1>
+      {itemCards.map((items)=>(
+            <RecommendedMenu key={items.card.info.id} itemCard={items}/>
+      ))}
+   
+    
     </div>
   );
 };

@@ -2,6 +2,7 @@ import ResCard from "./ResCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./utils/useOnlineStatus";
 
 const Body = () => {
   let [listOfRestrarent, setlistOfRestrarent] = useState([]);
@@ -21,13 +22,19 @@ const Body = () => {
     setlistOfRestrarent(restro);
     setFilterRestrarent(restro);
   };
+console.log(listOfRestrarent);
+let OnlineStatus=useOnlineStatus();
+  if(OnlineStatus===false)
+  {
+    return(
+      <div className="noInternet">
+      <h2>No internet connection found !!!</h2>
+      <p>Check your connection or try again later.</p>
 
-  // if(listOfRestrarent.length=== 0)
-  // {
-  //   return(
-  //     <Shimmer/>
-  //  )
-  // }
+    </div>
+    
+   );
+  }
 
   return listOfRestrarent.length=== 0 ? (               //conditional-rendering
     <Shimmer />
