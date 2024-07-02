@@ -337,6 +337,44 @@
 
 }
 
+
+/* Recommended  */
+
+.Recommended-Card
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.Recommended-Container hr{
+    margin: 30px 0px;
+}
+.Recommended-Container {
+  width: 60%;
+}
+.Recommended-Details h2
+{
+    margin-top: 10px ;   
+    font-size: 20px;
+}
+.Recommended-Details h3
+{ 
+    margin-top: 4px;
+    font-size: 18px;
+}
+.Recommended-Details p
+{ 
+    margin-top: 4px;
+    font-size: 16px;
+    color: #8a8888;
+}
+
+.Recommended-img img
+{
+    border-radius: 20px;
+}
+
 .User-details
 {
     display: flex;
@@ -374,3 +412,11 @@
   
 
 }
+
+.noInternet
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+} 
