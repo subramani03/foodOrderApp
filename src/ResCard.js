@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import {CON_URL} from "./utils/constants";
+import UserContext from "./utils/UserContext";
 const ResCard = ({ resData }) => {
+  let {loggedInUser}=useContext(UserContext);
     const { name, cloudinaryImageId,aggregatedDiscountInfoV3,cuisines, avgRating, deliveryTime, areaName } = resData.info;
     return (
       <div className="res_card">
@@ -23,4 +26,17 @@ const ResCard = ({ resData }) => {
     );
   };
   
+export const updatedResCard=(ResCard)=>
+{
+  return (props)=>
+  {
+    return (
+      <div>
+        <label className="absolute bg-black z-10 text-white mx-2 mr-10 p-1 rounded-lg" >Pure veg</label>
+        <ResCard {...props} />
+      </div>
+
+    );
+  }
+}
 export default ResCard;
