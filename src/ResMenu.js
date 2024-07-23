@@ -1,43 +1,53 @@
-import {MENU_API,CYCLE_URL} from "./utils/constants";
+import { MENU_API, CYCLE_URL } from "./utils/constants";
 import { useParams } from "react-router-dom";
 import useResMenuApi from "./utils/useResMenuApi";
-import RecommendedMenu from "./RecommendedMenu";
-import Shimmer from "./shimmer";
+import Shimmer from "./Shimmer";
 import useOnlineStatus from "./utils/useOnlineStatus";
-
-
+import CategoryCards from "./CategoryCards";
+import { useState } from "react";
 const ResMenu = () => {
   let { resId } = useParams();
+  let [showIndex,setShowIndex]=useState(null);
+  let [showItem,setshowItem]=useState(false);
+  let ResMenuInfo = useResMenuApi(MENU_API, resId);
+  // console.log(ResMenuInfo);
+  let OnlineStatus = useOnlineStatus();
 
-  let ResMenuInfo=useResMenuApi(MENU_API,resId);
-
-  let OnlineStatus=useOnlineStatus();
-  if(OnlineStatus===false)
-  {
-    return(
+  if (OnlineStatus === false) {
+    return (
       <div className="noInternet">
         <h2>No internet connection found !!!</h2>
         <p>Check your connection or try again later</p>
-
       </div>
-      
-   )
+    );
   }
 
   if (ResMenuInfo === null) {
     return <Shimmer />;
   }
-    let  itemCards  =ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR.cards?.[1]?.card?.card.itemCards
-    let {
+  let itemCategories =
+  ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  let categoryCard=itemCategories.filter(c=>(
+    c?.card?.card?.["@type"]===
+"type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+));
+
+// console.log(categoryCard)
+
+
+
+  let itemCards =
+    ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]
+      ?.card?.card?.itemCards ||    ResMenuInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]
+      ?.card?.card?.carousel;
+  let {
     name,
     cuisines,
     costForTwoMessage,
-    costForTwo,
-    cloudinaryImageId,
     avgRating,
-    nearestOutletNudge,
     totalRatingsString,
-  } = ResMenuInfo?.cards?.[2]?.card?.card?.info;
+  } = ResMenuInfo?.cards?.[2]?.card?.card?.info || {};
+
   return (
     <div className="Res-menu">
       <div className="Res-name">
@@ -54,7 +64,7 @@ const ResMenu = () => {
             <span>•</span> {costForTwoMessage}
           </h2>
         </div>
-        <h3 className="cuisines">{cuisines.join(",")}</h3>
+        <h3 className="cuisines">{cuisines?.join(", ")}</h3>
         <div className="outlet-container">
           <div className="outlet-logo">
             <div className="dot"></div>
@@ -66,25 +76,29 @@ const ResMenu = () => {
               <b>Outlet</b>
               <span> Avenue</span>
             </div>
-            <h4 className="delivary-time">
-              {/* {nearestOutletNudge.nearestOutletInfo.siblingOutlet.sla.slaString} */}
-              20-30 mins
-            </h4>
+            <h4 className="delivery-time">20-30 mins</h4>
           </div>
         </div>
         <hr className="Res-Details-line"></hr>
-        <div className="delivary-discount">
+        <div className="delivery-discount">
           <img src={CYCLE_URL} width={"22px"} alt="CYCLE_URL"></img>
           <p>Order above 149 for discounted delivery fee</p>
         </div>
       </div>
-      <h1>Recommended</h1>
-      {itemCards.map((items)=>(
-            <RecommendedMenu key={items.card.info.id} itemCard={items}/>
+      {/* <h2>Recommended</h2>
+      {console.log(itemCards)}
+      {itemCards.map((item,index) => (
+        <RecommendedMenu key={index} itemCard={item} />
+      ))} */}
+      {categoryCard.map((item,index) => (
+        <CategoryCards key={index} CategoryitemCard={item}
+        showItems={index===showIndex ?true:false}
+        setShowIndex={()=>{setShowIndex(index);
+          setshowItem(!showItem);}
+        } />
       ))}
-   
-    
     </div>
   );
 };
+
 export default ResMenu;
